@@ -28,4 +28,6 @@ jobs:
         echo ${{ steps.config.outputs.server }}
         echo ${{ steps.config.outputs.username }}
         echo ${{ steps.config.outputs.repo }}
-        echo ${{ steps.config.outputs }}
+
+        SERVER=${{fromJson(steps.config.outputs).server}}
+        echo ${{ SERVER }}
