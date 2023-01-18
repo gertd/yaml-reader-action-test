@@ -32,3 +32,5 @@ jobs:
         echo ${{ fromJson(steps.config.outputs.yaml).server }}
         echo ${{ fromJson(steps.config.outputs.yaml).username }}
         echo ${{ fromJson(steps.config.outputs.yaml).repo }}
+
+        echo ${{ steps.config.outputs.yaml }}
