@@ -16,6 +16,19 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Read test2
+      id: test2
+      uses: gertd/yaml-reader-action@v1
+      with:
+        filename: goreleaser-config.yaml
+
+    - name: Dump test2 results
+      id: test2-dump
+      run: |
+        echo ${{ fromJson(steps.test2.outputs.yaml).project_name }}
+        echo ${{ fromJson(steps.test2.outputs.yaml).release.github.name }}
+        echo ${{ steps.test2.outputs.yaml }}
+
     - name: Read config
       id: config
       uses: gertd/yaml-reader-action@v1
