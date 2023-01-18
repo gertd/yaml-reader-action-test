@@ -1,0 +1,4 @@
+server: ghcr.io
+username: gertd
+repo: gertd/yaml-reader-action-test
+

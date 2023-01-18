@@ -1,0 +1,31 @@
+name: test
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  release_policy:
+    runs-on: ubuntu-latest
+    name: build
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Read config
+      id: config
+      uses: gertd/yaml-reader-action@v1
+      with:
+        filename: .github/config.yaml
+
+    - name: Dump result
+      id: "dump"
+      run: |
+        echo ${{ steps.config.outputs.server }}
+        echo ${{ steps.config.outputs.username }}
+        echo ${{ steps.config.outputs.repo }}
+        echo ${{ steps.config.outputs }}
