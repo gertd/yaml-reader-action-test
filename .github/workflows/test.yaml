@@ -33,9 +33,9 @@ jobs:
       id: test2
       uses: gertd/yaml-reader-action@v1
       with:
-        filename: goreleaser-config.yaml
+        filename: buf.gen.yaml
 
     - name: Dump test2 results
       id: test2-dump
       run: |
-        echo ${{ steps.test2.outputs.yaml }}
+        echo ${{ fromJson(steps.test2.outputs.yaml).plugins[0].name }}
