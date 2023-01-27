@@ -38,5 +38,4 @@ jobs:
     - name: Dump test2 results
       id: test2-dump
       run: |
-        echo ${{ fromJson(steps.test2.outputs.yaml).project_name }}
-        echo ${{ fromJson(steps.test2.outputs.yaml).release.github.name }}
+        echo ${{ steps.test2.outputs.yaml }}
