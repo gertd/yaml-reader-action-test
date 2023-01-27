@@ -16,6 +16,19 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Read config
+      id: config
+      uses: gertd/yaml-reader-action@v1
+      with:
+        filename: .github/config.yaml
+
+    - name: Dump result
+      id: "dump"
+      run: |
+        echo ${{ fromJson(steps.config.outputs.yaml).server }}
+        echo ${{ fromJson(steps.config.outputs.yaml).username }}
+        echo ${{ fromJson(steps.config.outputs.yaml).repo }}
+
     - name: Read test2
       id: test2
       uses: gertd/yaml-reader-action@v1
@@ -27,23 +40,3 @@ jobs:
       run: |
         echo ${{ fromJson(steps.test2.outputs.yaml).project_name }}
         echo ${{ fromJson(steps.test2.outputs.yaml).release.github.name }}
-        echo ${{ steps.test2.outputs.yaml }}
-
-    - name: Read config
-      id: config
-      uses: gertd/yaml-reader-action@v1
-      with:
-        filename: .github/config.yaml
-
-    - name: Dump result
-      id: "dump"
-      run: |
-        echo ${{ steps.config.outputs.server }}
-        echo ${{ steps.config.outputs.username }}
-        echo ${{ steps.config.outputs.repo }}
-
-        echo ${{ fromJson(steps.config.outputs.yaml).server }}
-        echo ${{ fromJson(steps.config.outputs.yaml).username }}
-        echo ${{ fromJson(steps.config.outputs.yaml).repo }}
-
-        echo ${{ steps.config.outputs.yaml }}
