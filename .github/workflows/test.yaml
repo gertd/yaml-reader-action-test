@@ -25,9 +25,10 @@ jobs:
     - name: Dump result
       id: "dump"
       run: |
-        echo ${{ steps.config.outputs.server }}
-        echo ${{ steps.config.outputs.username }}
-        echo ${{ steps.config.outputs.repo }}
+        echo "GITHUB_OUT = ${GITHUB_OUTPUT}"
+        echo "server = ${{ steps.config.outputs.server }}"
+        echo "username = ${{ steps.config.outputs.username }}"
+        echo "repo = ${{ steps.config.outputs.repo }}"
 
     - name: Read test2
       id: test2
@@ -39,4 +40,4 @@ jobs:
     - name: Dump test2 results
       id: test2-dump
       run: |
-        echo ${{ fromJson(steps.test2.outputs.data).plugins[0].name }}
+        echo "name = ${{ fromJson(steps.test2.outputs.data).plugins[0].name }}"
