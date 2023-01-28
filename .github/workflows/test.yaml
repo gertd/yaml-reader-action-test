@@ -33,7 +33,7 @@ jobs:
       id: test2
       uses: gertd/yaml-reader-action@v1
       with:
-        file: buf.gen.yaml
+        file: ./buf.gen.yaml
         json: true
 
     - name: Dump test2 results
