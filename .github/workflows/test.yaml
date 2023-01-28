@@ -20,22 +20,23 @@ jobs:
       id: config
       uses: gertd/yaml-reader-action@v1
       with:
-        filename: .github/config.yaml
+        file: .github/config.yaml
 
     - name: Dump result
       id: "dump"
       run: |
-        echo ${{ fromJson(steps.config.outputs.yaml).server }}
-        echo ${{ fromJson(steps.config.outputs.yaml).username }}
-        echo ${{ fromJson(steps.config.outputs.yaml).repo }}
+        echo ${{ steps.config.outputs.server }}
+        echo ${{ steps.config.outputs.username }}
+        echo ${{ steps.config.outputs.repo }}
 
     - name: Read test2
       id: test2
       uses: gertd/yaml-reader-action@v1
       with:
-        filename: buf.gen.yaml
+        file: buf.gen.yaml
+        json: true
 
     - name: Dump test2 results
       id: test2-dump
       run: |
-        echo ${{ fromJson(steps.test2.outputs.yaml).plugins[0].name }}
+        echo ${{ fromJson(steps.test2.outputs.data).plugins[0].name }}
